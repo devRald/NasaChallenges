@@ -1,0 +1,10 @@
+#nomargin{
+  margin: 0px;
+  border-radius: 0px;
+  height: 600px;
+}
+#nomargin1{
+  margin: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
