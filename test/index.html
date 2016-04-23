@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test GPS</title>
+	<script src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript"> 
+(function(){
+	
+	var geocoder;
+
+  	if (navigator.geolocation) {
+    	navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+  	} 
+  	function initialize() {
+    	geocoder = new google.maps.Geocoder();
+  	}
+  	function codeLatLng(lat, lng) {
+  		var latlng = new google.maps.LatLng(14.580744, 120.977463);
+  		$.get("http://localhost/ajaximg/",{latitude:lat,longitude:lng},function(data){
+			console.log(data);
+		});
+  		geocoder.geocode({latLng: latlng}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			console.log(results);
+      		if (results[1]) {
+      			for(var i=0;i<results.length;i++){
+      				console.log(results[i].formatted_address);
+      			}
+      			
+        		
+      		} else {
+        		//alert("No results found");
+      		}
+    	} else {
+      		//alert("Geocoder failed due to: " + status);
+    	}
+  		});
+	}
+
+	//Get the latitude and the longitude;
+	function successFunction(position) {
+	    var lat = position.coords.latitude;
+	    var lng = position.coords.longitude;
+	    codeLatLng(lat, lng);
+	}
+
+	function errorFunction(){
+	    alert("Geocoder failed");
+	}
+	//call initialize
+	initialize();
+}());
+</script> 
+</head>
+<body>
+
+</body>
+</html>
