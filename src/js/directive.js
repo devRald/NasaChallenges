@@ -1,6 +1,6 @@
 app.directive('myMap', function() {
     // directive link function
-    var link = function(scope, element, attrs) {
+    /*var link = function(scope, element, attrs) {
         
     };
     
@@ -9,5 +9,5 @@ app.directive('myMap', function() {
         template: '<div id="gmaps"></div>',
         replace: true,
         link: link
-    };
+    };*/
 });

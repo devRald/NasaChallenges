@@ -9,4 +9,8 @@ app.config(function($routeProvider,$locationProvider){
 		templateUrl: "templates/maps.html",
 		controller: "MapsCtrl"
 	})
+	.when("/media",{
+		templateUrl:"templates/media.html",
+		controller: "MediaCtrl"
+	})
 });

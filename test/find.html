@@ -46,9 +46,8 @@
         circle.bindTo('center', marker, 'position');
 
         var request = {
-          location: loc,
-          radius: '1000',
-          types: ['bus_station']
+          address: "PLDT Boni",
+          radius: '500'
         };
         var service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, function(results, status) {

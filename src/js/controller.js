@@ -9,6 +9,9 @@ app.controller("MainCtrl",function($scope,$rootScope){
 		);
 	}
 })
+.controller("MediaCtrl",function($scope){
+    $('.carousel').carousel({dist:0});
+})
 .controller("MapsCtrl",function($scope,$rootScope,$http){
 	$scope.initMap = function() {
 	    $scope.map = new google.maps.Map(document.getElementById('gmaps'), {
