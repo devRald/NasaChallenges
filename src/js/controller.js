@@ -9,11 +9,12 @@ app.controller("MainCtrl",function($scope,$rootScope){
 		);
 	}
 })
-.controller("MapsCtrl",function($scope,$rootScope){
+.controller("MapsCtrl",function($scope,$rootScope,$http){
 	$scope.initMap = function() {
 	    $scope.map = new google.maps.Map(document.getElementById('gmaps'), {
 	      center: {lat: 5, lng: 10},
-	      zoom: 15
+	      zoom: 15,
+	      enableHighAccuracy: true
 	    });
     }
 
@@ -28,6 +29,14 @@ app.controller("MainCtrl",function($scope,$rootScope){
 
     $scope.displayAndWatch = function(position) {
         // set current position
+        $http.post("http://iligtas.ph/NASASpaceApps/getLandMark.php",{latitude:position.coords.latitude,longitude:position.coords.longitude}).then(function(response){
+        	$scope.landmarks = response.data.landmarks; 
+        	console.log($scope.landmarks);
+        	for(var i=0;i<response.data.landmarks.length;i++){
+        		$scope.getDetails($scope.landmarks[i].lat,$scope.landmarks[i].lon,$scope.landmarks[i].name1);
+        		//console.log($scope.landmarks[i].lat,$scope.landmarks[i].lon);
+        	}
+        });
         $scope.setCurrentPosition(position);
         // watch position
         $scope.watchCurrentPosition();
@@ -65,6 +74,15 @@ app.controller("MainCtrl",function($scope,$rootScope){
             pos.coords.latitude,
             pos.coords.longitude
         ));
+    }
+
+    $scope.getDetails = function(lat,lng,name1){
+    	var loc = {lat:lat,lng:lng};
+    	var marker = new google.maps.Marker({
+		    position: loc,
+		    map: $scope.map,
+		    title: name1
+		});
     }
 
     $scope.initLocationProcedure();
