@@ -1,4 +1,4 @@
-var app = angular.module("myApp",["ngRoute"]);
+var app = angular.module("myApp",["ngRoute","GMaps"]);
 
 app.config(function($routeProvider,$locationProvider){
 	$routeProvider
@@ -6,6 +6,7 @@ app.config(function($routeProvider,$locationProvider){
 		templateUrl: "templates/home.html"
 	})
 	.when("/maps",{
-		templateUrl: "templates/maps.html"
+		templateUrl: "templates/maps.html",
+		controller: "MapsCtrl"
 	})
 });
