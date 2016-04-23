@@ -1,6 +1,14 @@
 app.controller("MainCtrl",function($scope,$rootScope){
+    // Load the SDK asynchronously
+    (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));	
 	
-	$scope.openNav = function(){
+    $scope.openNav = function(){
 		$('.button-collapse').sideNav({
 		    menuWidth: 300, // Default is 240
 		    edge: 'left', // Choose the horizontal origin
@@ -8,6 +16,92 @@ app.controller("MainCtrl",function($scope,$rootScope){
 		  }
 		);
 	}
+
+    function statusChangeCallback(response) {
+        if (response.status === 'connected') {
+          // Logged into your app and Facebook.
+          // called when page refresh
+          testAPI();
+        } else if (response.status === 'not_authorized') {
+          // The person is logged into Facebook, but not your app.
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into this app.';
+        } else {
+          // The person is not logged into Facebook, so we're not sure if
+          // they are logged into this app or not.
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into Facebook.';
+        }
+      }
+
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          FB.api(
+              "/{user-id}/picture",
+              function (response) {
+                if (response && !response.error) {
+                  /* handle the result */
+                }
+              }
+          );
+          statusChangeCallback(response);
+        });
+      }
+
+      window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1013743195374338',
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.6', // use graph api version 2.5
+        cookie     : true
+      });
+
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+
+      };
+
+      //first login
+      function testAPI() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me',{fields: ['name','picture']}, function(response) {
+          console.log(response);
+          /*if(sessionStorage.getItem("userdata")===null){
+              $http.post("http://"+host+"/ELECTIONPH/__getUserdata.php",{mydata:response}).then(function(res){
+                console.log(res.data);
+                sessionStorage.setItem("userdata",JSON.stringify(res.data));
+                $rootScope.setLogin(false);
+              });
+          }*/
+          console.log('Successful login for: ' + response.name);
+          document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
+        });
+      }
+
+    $scope.login_fb = function(){
+        FB.login(function(response) {
+          if (response.authResponse) {
+           //this will call testAPI
+           console.log('Welcome!  Fetching your information.... ');
+           FB.api('/me',{fields: ['name','picture']}, function(response) {
+             console.log('Good to see you, ' + response.name + '.');
+                /*$http.post("http://"+host+"/ELECTIONPH/__checkUser.php",{mydata:response}).then(function(res){
+                    if(res.data=="done"){
+                        $http.post("http://"+host+"/ELECTIONPH/__getUserdata.php",{mydata:response}).then(function(res){
+                            console.log(res.data);
+                            sessionStorage.setItem("userdata",JSON.stringify(res.data));
+                            $rootScope.setLogin(false);
+                          });
+                    }
+                });*/
+           });
+          } else {
+           console.log('User cancelled login or did not fully authorize.');
+          }
+      });
+    }
 })
 .controller("MediaCtrl",function($scope,$rootScope,$http){
     $('.carousel').carousel({dist:0});
@@ -17,7 +111,7 @@ app.controller("MainCtrl",function($scope,$rootScope){
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
 
-    $scope.userLogin = function(){
+    /*$scope.userLogin = function(){
         $http.get("http://localhost/ajaximg/login.php?username="+$scope.username+"&password="+$scope.password).then(function(response){
             if(response.data!="invalid"){
                 sessionStorage.setItem("userdata",JSON.stringify(response.data));
@@ -37,7 +131,7 @@ app.controller("MainCtrl",function($scope,$rootScope){
                 
             }
         });
-    }
+    }*/
 })
 .controller("MapsCtrl",function($scope,$rootScope,$http){
 	$scope.initMap = function() {
