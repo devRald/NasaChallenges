@@ -9,8 +9,35 @@ app.controller("MainCtrl",function($scope,$rootScope){
 		);
 	}
 })
-.controller("MediaCtrl",function($scope){
+.controller("MediaCtrl",function($scope,$rootScope,$http){
     $('.carousel').carousel({dist:0});
+})
+.controller("LoginCtrl",function($scope,$rootScope,$http,$location){
+    $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
+
+    $scope.userLogin = function(){
+        $http.get("http://localhost/ajaximg/login.php?username="+$scope.username+"&password="+$scope.password).then(function(response){
+            if(response.data!="invalid"){
+                sessionStorage.setItem("userdata",JSON.stringify(response.data));
+                $location.path("/home");
+            }
+            else{
+                console.log("invalid credentials");
+            }
+        });
+    }
+
+    $scope.userSignup = function(){
+        console.log($scope.user);
+        $http.get("http://localhost/ajaximg/register.php?username="+$scope.user+"&password="+$scope.pwd+"&email="+$scope.email+"&fname="+$scope.fname+"&lname="+$scope.lname).then(function(response){
+            console.log(response.data);
+            if(response.data!="Not registered"){
+                
+            }
+        });
+    }
 })
 .controller("MapsCtrl",function($scope,$rootScope,$http){
 	$scope.initMap = function() {
