@@ -1,46 +1,130 @@
-<header>
-	<nav>
-		<div class="top-nav">
-			<div class="container">
-				<div class="nav-wrapper">
-					<a class="page-title">Title</a>
-				</div>
-			</div>
-		</div>
-	</nav>
-	<div class="container">
-		<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
-	</div>
-	<ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0%);">
-        <li class="logo"><a id="logo-container" href="http://materializecss.com/" class="brand-logo">
-            <object id="front-page-logo" type="image/svg+xml" data="res/materialize.svg" __idm_frm__="369">Your browser does not support SVG</object></a></li>
-        <li class="search">
-          <div class="search-wrapper card">
-            <input id="search"><i class="material-icons">search</i>
-            <div class="search-results"></div>
-          </div>
-        </li>
-        <li class="bold"><a href="about.html" class="waves-effect waves-teal">About</a></li>
-        <li class="bold"><a href="getting-started.html" class="waves-effect waves-teal">Getting Started</a></li>
-        <li class="no-padding">
-          <ul class="collapsible collapsible-accordion">
-            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">CSS</a>
-              <div class="collapsible-body" style="">
-                <ul>
-                  <li><a href="color.html">Color</a></li>
-                  <li><a href="grid.html">Grid</a></li>
-                  <li><a href="helpers.html">Helpers</a></li>
-                  <li><a href="media-css.html">Media</a></li>
-                  <li><a href="sass.html">Sass</a></li>
-                  <li><a href="shadow.html">Shadow</a></li>
-                  <li><a href="table.html">Table</a></li>
-                  <li><a href="typography.html">Typography</a></li>
-                </ul>
-              </div>
-            </li>
-            
-            
+<!--  <div id="particles-js"></div>-->
+  <header>
+  <ul class="side-nav fixed blue-grey darken-1 hoverable" id="mobile-demo">
+
+    <li>
+      <div class="row" style="margin-top:10px; margin-bottom:0px; margin-left:0px;">
+        <div class="col s4">
+          <img src="{{userdata.img}}" class="responsive-img circle">
+        </div>
+        <div class="col s8" style="padding-left: 0px; padding-right: 0px;margin-top:-20px;">
+          <strong class="white-text" style="">
+            {{userdata.name}}
+          </strong>
+          <p class="white-text" style="padding:0px; margin-top:-30px; margin-bottom:0px; font-size:10px;">
+            Beginner
+          </p>
+          <ul>
+          <li>
+            <a class="grey-text text-lighten-3" style="padding:0px; margin-top:-30px; margin-bottom:0px; font-size:12px;" href="" ng-click="logout()">
+              Sign Out
+            </a>
+          </li>
           </ul>
-        </li>
+        </div>
+      </div>
+    </li>
+    <div class="container"><div class="divider"></div></div>
+    <br>
+    <div class="row">
+    <div class="col s12">
+      <ul class="tabs blue-grey darken-1">
+        <li class="tab col s3 blue-grey darken-1"><a style="padding-left:0px;padding-right:0px;font-size:12px;" class="active white-text" href="#test3">Leaderboards</a></li>
+        <li class="tab col s3 blue-grey darken-1"><a style="padding-left:0px;padding-right:0px;font-size:12px;" class="white-text" href="#test4">Notebook</a></li>
       </ul>
+    </div>
+    <div id="test3" class="col s12">
+    <li class="white-text" style="margin-left:10px;">
+      1.
+      <div class="chip blue-grey darken-1 white-text hoverable">
+        <img src="./img/DP.png" alt="Contact Person">
+          
+      </div>
+    </li>
+    </div>
+    <div id="test4" class="col s12">
+    Test 2
+    </div>
+  </div>   
+  </ul>
+  <div class="">
+    <nav class="top-navbar blue-grey darken-2 hoverable">
+
+      <div class="container">
+      <a href="#!" class="brand-logo white-text">GoTag</a>
+          <a href="" data-activates="mobile-demo" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+        <div class="nav-wrapper">
+          <a href="" class="page-title center brand-logo white-text" style="font-size:30px;">{{modalTitle}}</a>
+        </div>  
+      </div>
+    </nav>
+  </div>
 </header>
+<main>
+  <div id="gmaps"></div>
+  <!--<div class="fixed-action-btn vertical click-to-toggle" style="bottom: 45px; right:43%;">
+  <ul class="">
+      <li>
+        <a class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Navigate">
+          <i class="material-icons">
+          navigation
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="" class="btn-floating yellow darken-1 tooltipped" data-position="left" data-delay="50" data-tooltip="Leaderboard">
+          <i class="material-icons">
+            supervisor_account
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Notebook">
+          <i class="material-icons">
+            library_books
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="" class="btn-floating blue tooltipped" data-position="left" data-delay="50" data-tooltip="Badges">
+          <i class="material-icons">
+            stars
+          </i>
+        </a>
+      </li>
+    </ul>
+    <a class="btn-floating btn-large red tooltipped" data-position="left" data-delay="50" data-tooltip="Menu">
+      <i class="large material-icons">view_module</i>
+    </a>
+    
+  </div>-->
+  <div id="modal1" class="modal">
+    <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#test1" ng-click="turnTo()"><i class="material-icons">person_pin</i></a></li>
+        <li class="tab col s3"><a href="#test2"><i class="material-icons">forum</i></a></li>
+      </ul>
+    </div>
+  </div>
+    <div class="modal-content">
+      <div id="test1" class="col s12">
+    <img src="">
+      <h4 id="title"></h4>
+      <p id="info"></p>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-next waves-effect waves-green btn-flat">Next</a>
+      </div>
+    </div>
+    <div id="test2" class="col s12">
+    <img src="">
+      <h4 id="title">LandMark Title</h4>
+      <p id="info">LandMark Details</p>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      </div>
+    </div>
+      
+    </div>
+  </div>
+</main>

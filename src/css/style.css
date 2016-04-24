@@ -1,19 +1,98 @@
 #gmaps{
-	width:100%;
-	height: 600px;
+  width: 100%;
+  height: 600px;
+  position: fixed;
 }
-@media only screen and (min-width : 200px) {
-    
+nav ul a,
+nav .brand-logo {
+  color: #444;
 }
-@media only screen and (min-width : 300px) {
-      
+
+/*p {
+  line-height: 2rem;
 }
-@media only screen and (min-width : 601px) {
-    
+*/
+.button-collapse {
+  color: #26a69a;
 }
-@media only screen and (min-width: 992px) {
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+.block {
+  width: 100%;
+}
+header,main,footer{
+  padding-left: 100px;
 
 }
-@media only screen and (min-width: 1200px) {
-    
+.magin-left{
+  margin-left: :200px;
+}
+@media only screen and (max-width: 300px){
+  header,main,footer{
+  padding-left: 0px;
+  }
+
+}
+@media only screen and (max-width: 992px){
+  header,main,footer{
+  padding-left: 0px;
+  }
+  img{
+    height: 50px;
+    width: 50px;
+  }
+}
+@media only screen and (min-width: 992px){
+  img{
+    height: 50px;
+    width: 50px;
+  }
+  .margin-left {
+    margin-left: 10px;
+  }
+}
+#particles-js {
+    /* Size */
+    height: 100% !important;
+    width: 100% !important;
+    /* position */
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;    
+    z-index: 1 !important;
 }
